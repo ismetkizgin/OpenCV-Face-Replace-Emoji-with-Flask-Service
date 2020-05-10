@@ -24,6 +24,10 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
+@app.route("/")
+def hello():
+    return "Hello World!"
+
 @app.route("/", methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
