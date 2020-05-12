@@ -12,11 +12,12 @@ from werkzeug.utils import secure_filename
 import cv2
 import numpy as np
 
+
 UPLOAD_FOLDER = './images/'
 ALLOWED_EXTENSIONS = set(['jpeg'])
 
 face_cascade = cv2.CascadeClassifier('haarcascade-frontalface-default.xml')
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -39,7 +40,7 @@ def index():
             img = cv2.imread("images/"+filename) 
             img = detect(img)
             cv2.imwrite("images/"+filename,img)
-            return send_file('images/' + file.filename, mimetype='image/jpg')
+            return send_file(file, mimetype='image/jpg')
     
 
 def detect(frame):
