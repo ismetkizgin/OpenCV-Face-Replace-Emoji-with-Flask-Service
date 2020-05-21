@@ -1,0 +1,12 @@
+version: "3"
+services:
+  serve:
+    container_name: opencv_serve
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    expose:
+      - 3000
+    restart: always
+    ports:
+      - "3000:3000"
